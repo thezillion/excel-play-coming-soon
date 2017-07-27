@@ -13,6 +13,8 @@ laserGenTime = 100,
 cycles = 0,
 colorSet = ["green", "red", "blue", "orange"],
 points = 0,
+topPoints = 400,
+percentComp = 0,
 health = 100,
 hurtEffectTimer = 0,
 gameState = 1,
@@ -157,7 +159,7 @@ var laser = function() {
     this.startX = width/2 + this.distance*Math.cos(this.angle);
     this.startY = height - this.distance*Math.sin(this.angle);
     if (this.distance < handLength*0.2) {
-      health-=10;
+      health-=25;
       this.state = 0;
       hurtEffectTimer = 4;
     }
@@ -244,7 +246,7 @@ var endScreen = function() {
     ctx.lineWidth=7;
     drawLine(startSaberX, startSaberY-saberHeight*0.2, startSaberX, startSaberY-saberHeight*0.2-saberHeight*0.8 );
 
-    var percentComp = points>100?100:points;
+    percentComp = points>topPoints?100:Math.floor(points*100/topPoints);
     ctx.strokeStyle=saberColor;
     ctx.lineWidth=7;
     drawLine(startSaberX, startSaberY-saberHeight*0.2, startSaberX, startSaberY-saberHeight*0.2-saberHeight*0.8*cycles*percentComp/(100*100));
@@ -288,7 +290,7 @@ var GameLoop = function() {
         lightsaberHitAudio.currentTime = 0;
       }
       lightsaberHitAudio.play();
-      points++;
+      points+=5;
       lasers[i].state = 2;
       lasers[i].initX = lasers[i].startX;
       lasers[i].initY = lasers[i].startY;
