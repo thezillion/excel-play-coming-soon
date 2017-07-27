@@ -5,6 +5,7 @@
 html, body {
   height: 100%;
   background: black;
+  overflow: hidden;
 }
 
 .start-container {
@@ -67,7 +68,7 @@ html, body {
     }
     .start-container .content {
       transform: rotateX(45deg) translateY(900px);
-      animation: content-anim-mobile 22s forwards;
+      animation: content-anim-mobile 21s forwards;
       animation-delay: 0s;
       animation-timing-function: linear;
     }
@@ -86,8 +87,8 @@ html, body {
   font-size: 1.5em;
   text-align: center;
   font-weight: bold;
-  letter-spacing: 2.5em;
-  text-indent: 2.5em;
+  letter-spacing: 2em;
+  text-indent: 2em;
   line-height: 0.8em;
 }
 
