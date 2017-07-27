@@ -1,28 +1,23 @@
 var c = document.getElementById('c'),
-width = c.width,
-height = c.height,
-gLoop,
-ctx = c.getContext('2d');
+ctx = c.getContext('2d'),
+skipped = 0;
 
-var clear = function() {
-  ctx.fillStyle = '#d0e7f9';
-
-  ctx.fill();
+var hideStart = function() {
+  skipped = 1;
+  document.querySelector(".start-container").style.animation="fadeout 3s forwards";
+  // document.querySelector("audio").pause();
+  document.querySelector("#c").style.animation="fadein 2s forwards";
+  setTimeout(function() {
+    document.querySelector(".start-container").style.display = "none";
+    document.querySelector("#c").style.display="block";
+    GameLoop();
+  }, 3000);
 }
 
-var drawBG = function() {
-  ctx.beginPath();
-  ctx.fillStyle = "#c82124"; //red
-
-  ctx.rect(0, height*0.8, width, height);
-  ctx.fill();
-
-}
-
-var GameLoop = function() {
-  clear();
-  drawBG();
-
-  gLoop = setTimeout(GameLoop, 1000 / 50);
-}
-// GameLoop();
+document.addEventListener("keypress", function(e) {
+  if(String.fromCharCode(e.which) == 'k' && skipped == 0) {
+    hideStart();
+  }
+});
+//For game dev only
+// hideStart();
