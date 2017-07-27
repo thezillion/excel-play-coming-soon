@@ -15,6 +15,11 @@ var hideStart = function() {
       GameLoop();
     }, 3000);
   }
+  else {
+    //For Mobile
+    document.querySelector(".start-container").style.perspective = "300px";
+    document.querySelector(".start-container").style.overflow = "visible";
+  }
 }
 
 document.addEventListener("keypress", function(e) {
