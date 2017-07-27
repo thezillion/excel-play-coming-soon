@@ -59,6 +59,20 @@ html, body {
   animation-timing-function: linear;
 }
 
+@media only screen and (max-device-width: 700px) {
+  .start-container {
+      perspective: 200px;
+      width: 50%;
+      overflow: visible;
+    }
+    .start-container .content {
+      transform: rotateX(45deg) translateY(900px);
+      animation: content-anim-mobile 22s forwards;
+      animation-delay: 0s;
+      animation-timing-function: linear;
+    }
+}
+
 .end-screen {
     position: absolute;
     width: 80%;
@@ -113,6 +127,20 @@ html, body {
 @keyframes content-anim {
     0% {
       transform: rotateX(45deg) translateY(400px);
+    }
+    90% {
+      transform: rotateX(45deg) translateY(-700px);
+      opacity: 1;
+    }
+    100% {
+      transform: rotateX(45deg) translateY(-750px);
+      opacity: 0;
+    }
+}
+
+@keyframes content-anim-mobile {
+    0% {
+      transform: rotateX(45deg) translateY(900px);
     }
     90% {
       transform: rotateX(45deg) translateY(-700px);

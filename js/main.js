@@ -25,8 +25,6 @@ if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
      bgm.play();
    }
   });
-  document.querySelector(".start-container").style.perspective = "300px";
-  document.querySelector(".start-container").style.overflow = "visible";
 }
 
 document.addEventListener("keypress", function(e) {
