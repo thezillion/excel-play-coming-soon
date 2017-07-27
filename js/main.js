@@ -15,11 +15,18 @@ var hideStart = function() {
       GameLoop();
     }, 3000);
   }
-  else {
-    //For Mobile
-    document.querySelector(".start-container").style.perspective = "300px";
-    document.querySelector(".start-container").style.overflow = "visible";
-  }
+}
+
+//For Mobile
+if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
+  window.addEventListener('click', function() {
+   var bgm = document.querySelector("audio");
+   if(bgm.paused) {
+     bgm.play();
+   }
+  });
+  document.querySelector(".start-container").style.perspective = "300px";
+  document.querySelector(".start-container").style.overflow = "visible";
 }
 
 document.addEventListener("keypress", function(e) {

@@ -21,8 +21,6 @@ initMessageTime = 200,
 lightsaberMoveAudio = new Audio('sounds/8d82b5_Lightsaber_Idle_Hum_Sound_Effect.mp3'),
 lightsaberHitAudio = new Audio('sounds/78671__joe93barlow__hit4.wav'),
 lightsaberOnAudio = new Audio('sounds/78674__joe93barlow__on0.wav'),
-bgm = document.querySelector("audio"),
-bgmNeverPlayed = bgm.paused;
 ctx = c.getContext('2d');
 
 lightsaberHitAudio.volume = 0.2;
@@ -350,7 +348,4 @@ document.addEventListener("click", function(e) {
   if(gameState == 0) {
     restart();
   }
-  if(bgm.paused && bgmNeverPlayed) {
- 		bgm.play();
- 	}
 });
