@@ -284,7 +284,9 @@ var GameLoop = function() {
     lasers[i].draw();
     if(lasers[i].state == 1 && isBlocked(lasers[i])) {
       lightsaberHitAudio.pause();
-      lightsaberHitAudio.currentTime=0;
+      if (!isNaN(lightsaberHitAudio.duration)) {
+        lightsaberHitAudio.currentTime = 0;
+      }
       lightsaberHitAudio.play();
       points++;
       lasers[i].state = 2;
