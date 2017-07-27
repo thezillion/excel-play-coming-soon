@@ -271,7 +271,7 @@ var endScreen = function() {
   ctx.fillStyle = "rgba(255,255,102, 0.5)";
   ctx.fillText("-   C   O   M   I   N   G       S   O   O   N   -", width/2, height*0.75 + height*0.15*0.7);
 
-  if(cycles < 100) {
+  if(cycles < 100 && gameState == 0) {
     cycles++;
     eLoop = setTimeout(endScreen, 1000 / 50);
   }
