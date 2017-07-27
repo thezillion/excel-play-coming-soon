@@ -348,4 +348,8 @@ document.addEventListener("click", function(e) {
   if(gameState == 0) {
     restart();
   }
+  var bgm = document.querySelector("audio");
+  if(bgm.paused) {
+ 		bgm.play();
+ 	}
 });
