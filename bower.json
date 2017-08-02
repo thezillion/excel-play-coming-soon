@@ -1,0 +1,20 @@
+{
+  "name": "excel-play-coming-soon",
+  "homepage": "https://github.com/batman-nair/excel-play-coming-soon",
+  "authors": [
+    "Prince Mathew <i.princemathew@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}

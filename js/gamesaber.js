@@ -281,6 +281,8 @@ var endScreen = function() {
 var GameLoop = function() {
   clear();
 
+  saber1.draw();
+
   for( i=0; i<lasers.length ; i++) {
     lasers[i].update();
     lasers[i].draw();
@@ -301,12 +303,12 @@ var GameLoop = function() {
       lasers.splice(i, 1);
     }
   }
+
   if(cycles >= laserGenTime) {
     lasers.push(new laser());
     cycles = 0;
   }
 
-  saber1.draw();
   laserGenTime = laserGenTime<=20?20:100 - points;
   cycles++;
   if (hurtEffectTimer-- > 0) {
@@ -336,7 +338,6 @@ var GameLoop = function() {
   }
   else if(gameState == 1) {
     lightsaberMoveAudio.play();
-    gLoop = setTimeout(GameLoop, 1000 / 50);
   }
 }
 
