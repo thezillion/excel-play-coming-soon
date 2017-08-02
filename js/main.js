@@ -25,6 +25,7 @@ if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
      bgm.play();
    }
   });
+  hideStart();
 }
 
 document.addEventListener("keypress", function(e) {
