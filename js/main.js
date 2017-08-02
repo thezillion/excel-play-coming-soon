@@ -4,7 +4,7 @@ skipped = 0;
 
 var hideStart = function() {
   //Check Mobile
-  if (!(/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent))) {
+  // if (!(/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent))) {
     skipped = 1;
     document.querySelector(".start-container").style.animation="fadeout 3s forwards";
     // document.querySelector("audio").pause();
@@ -14,7 +14,7 @@ var hideStart = function() {
       document.querySelector("#c").style.display="block";
       GameLoop();
     }, 3000);
-  }
+  // }
 }
 
 //For Mobile
@@ -25,7 +25,6 @@ if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
      bgm.play();
    }
   });
-  hideStart();
 }
 
 document.addEventListener("keypress", function(e) {

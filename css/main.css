@@ -17,7 +17,6 @@ html, body {
   perspective: 100px;
   font-family: "Droid Sans", arial, verdana, sans-serif;
   color: #ff6;
-  overflow: hidden;
 }
 
 .start-container .title {
@@ -64,7 +63,6 @@ html, body {
   .start-container {
       perspective: 200px;
       width: 50%;
-      overflow: visible;
     }
     .start-container .content {
       transform: rotateX(45deg) translateY(900px);
