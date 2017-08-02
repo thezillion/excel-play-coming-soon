@@ -9,7 +9,6 @@ html, body {
 }
 
 .start-container {
-  display: none;
   position: relative;
   width: 700px;
   height: 80%;
@@ -187,5 +186,5 @@ html, body {
   height: 100%;
   top: 0;
   left: 0;
-  /*display: none;*/
+  display: none;
 }
