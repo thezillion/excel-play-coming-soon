@@ -340,12 +340,19 @@ var GameLoop = function() {
   }
 }
 
-document.addEventListener("mousemove", function(e) {
-  var x = e.clientX;
-  var y = e.clientY;
-  handAngle = Math.atan2(height-y, x-width/2);
-});
-
+if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
+  document.addEventListener("touchmove", function(e) {
+    var x = e.changedTouches[0].clientX;
+    var y = e.changedTouches[0].clientY;
+    handAngle = Math.atan2(height-y, x-width/2);
+  });
+}
+else {
+  document.addEventListener("mousemove", function(e) {
+    var x = e.clientX;
+    var y = e.clientY;
+  });
+}
 document.addEventListener("click", function(e) {
   if(gameState == 0) {
     restart();
