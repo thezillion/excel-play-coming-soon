@@ -332,11 +332,11 @@ var GameLoop = function() {
     cycles = 0;
     lightsaberMoveAudio.pause();
     lightsaberOnAudio.play();
+    clearInterval(gLoop);
     endScreen();
   }
   else if(gameState == 1) {
     lightsaberMoveAudio.play();
-    gLoop = setTimeout(GameLoop, 1000 / 50);
   }
 }
 
