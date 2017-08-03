@@ -12,7 +12,7 @@ var hideStart = function() {
     setTimeout(function() {
       document.querySelector(".start-container").style.display = "none";
       document.querySelector("#c").style.display="block";
-      GameLoop();
+      gLoop = setInterval(GameLoop, 1000 / 50);
     }, 3000);
   // }
 }
