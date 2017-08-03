@@ -6,6 +6,7 @@ c.width = screen.width;
 var width = c.width,
 height = c.height,
 gLoop,
+eLoop = null,
 handLength = width*0.15,
 handAngle = Math.PI/2,
 lasers = [],
@@ -43,7 +44,7 @@ var restart = function() {
   cycles = 0;
   laserGenTime = 100;
   lasers = [];
-  GameLoop();
+  gLoop = setInterval(GameLoop, 1000 / 50);
 }
 
 var hud = function() {
@@ -166,7 +167,7 @@ var laser = function() {
   }
 }
 //check orientation of point P wrt a line AB
-var orientation = function(ax, ay, bx, by, px, py) {
+function orientation(ax, ay, bx, by, px, py) {
   var val = (by - ay) * (px - bx) - (bx - ax) * (py - by);
   if (val == 0) { return 0; }  // colinear
 
@@ -271,9 +272,20 @@ var endScreen = function() {
   ctx.fillStyle = "rgba(255,255,102, 0.5)";
   ctx.fillText("-   C   O   M   I   N   G       S   O   O   N   -", width/2, height*0.75 + height*0.15*0.7);
 
+  if (!eLoop) pappu();
+
+}
+
+function pappu() {
+
   if(cycles < 100 && gameState == 0) {
     cycles++;
     eLoop = setTimeout(endScreen, 1000 / 50);
+  }
+
+  if (cycles == 100) {
+    clearTimeout(eLoop);
+    eLoop = null;
   }
 
 }
@@ -282,27 +294,6 @@ var GameLoop = function() {
   clear();
 
   saber1.draw();
-
-  for( i=0; i<lasers.length ; i++) {
-    lasers[i].update();
-    lasers[i].draw();
-    if(lasers[i].state == 1 && isBlocked(lasers[i])) {
-      lightsaberHitAudio.pause();
-      if (!isNaN(lightsaberHitAudio.duration)) {
-        lightsaberHitAudio.currentTime = 0;
-      }
-      lightsaberHitAudio.play();
-      points+=5;
-      lasers[i].state = 2;
-      lasers[i].initX = lasers[i].startX;
-      lasers[i].initY = lasers[i].startY;
-      lasers[i].angle = 2*handAngle - lasers[i].angle;
-      lasers[i].distance = 0;
-    }
-    if(lasers[i].state == 0) {
-      lasers.splice(i, 1);
-    }
-  }
 
   if(cycles >= laserGenTime) {
     lasers.push(new laser());
@@ -333,12 +324,39 @@ var GameLoop = function() {
     gameState = 0;
     cycles = 0;
     lightsaberMoveAudio.pause();
-    lightsaberOnAudio.play();
+    window.addEventListener('click', function() {
+     lightsaberMoveAudio.play();
+    });
+    clearInterval(gLoop);
     endScreen();
   }
   else if(gameState == 1) {
-    lightsaberMoveAudio.play();
+    window.addEventListener('click', function() {
+     lightsaberMoveAudio.play();
+    });
   }
+
+  for( i=0; i<lasers.length ; i++) {
+    lasers[i].update();
+    lasers[i].draw();
+    if(lasers[i].state == 1 && isBlocked(lasers[i])) {
+      lightsaberHitAudio.pause();
+      if (!isNaN(lightsaberHitAudio.duration)) {
+        lightsaberHitAudio.currentTime = 0;
+      }
+      lightsaberHitAudio.play();
+      points+=5;
+      lasers[i].state = 2;
+      lasers[i].initX = lasers[i].startX;
+      lasers[i].initY = lasers[i].startY;
+      lasers[i].angle = 2*handAngle - lasers[i].angle;
+      lasers[i].distance = 0;
+    }
+    if(lasers[i].state == 0) {
+      lasers.splice(i, 1);
+    }
+  }
+
 }
 
 document.addEventListener("mousemove", function(e) {

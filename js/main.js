@@ -1,8 +1,10 @@
 var c = document.getElementById('c'),
 ctx = c.getContext('2d'),
-skipped = 0;
+skipped = 0
+var gLoop;
 
 var hideStart = function() {
+  console.log('pappu');
   //Check Mobile
   if (!(/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent))) {
     skipped = 1;
