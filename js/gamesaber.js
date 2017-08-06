@@ -126,7 +126,7 @@ var laser = function() {
   this.initX = width/2 + this.distance*Math.cos(this.angle);
   this.initY = height - this.distance*Math.sin(this.angle);
 
-  //Laser collides to only 30% its length
+  //Laser collides to only 40% its length
   this.endX = function() { return width/2 + (this.distance+this.length*0.4)*Math.cos(this.angle); }
   this.endY = function() { return height - (this.distance+this.length*0.4)*Math.sin(this.angle); }
 
