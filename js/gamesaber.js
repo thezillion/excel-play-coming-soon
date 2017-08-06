@@ -47,6 +47,27 @@ var restart = function() {
   gLoop = setInterval(GameLoop, 1000 / 50);
 }
 
+function lightSaber_open() {
+  saber1.light_length = 0;
+  saber1.draw();
+  lightsaberOnAudio.play();
+  var p = setInterval(function() {
+    if (saber1.light_length < width*0.1) {
+      clear();
+      saber1.light_length++;
+      saber1.draw();
+    } else {
+      document.addEventListener("mousemove", function(e) {
+        var x = e.clientX;
+        var y = e.clientY;
+        handAngle = Math.atan2(height-y, x-width/2);
+      });
+      gLoop = setInterval(GameLoop, 1000 / 50);
+      clearInterval(p);
+    }
+  }, 1);
+}
+
 var hud = function() {
   ctx.fillStyle = "rgba(255,255,255,0.6)";
   ctx.font = "small-caps " + width*0.012 + "px Droid Sans";
@@ -71,11 +92,16 @@ var drawLine = function(x1, y1, x2, y2) {
 }
 var saber = function() {
   this.length = width*0.1;
+  this.light_length = width*0.1;
   this.holdAngle = Math.PI/2;
   this.startX = width/2 + handLength*Math.cos(handAngle);
   this.startY =  height - handLength*Math.sin(handAngle);
   this.deltaX = this.length*Math.cos(this.holdAngle-handAngle);
   this.deltaY =  this.length*Math.sin(this.holdAngle-handAngle);
+  this.startX_light = width/2 + handLength*Math.cos(handAngle);
+  this.startY_light =  height - handLength*Math.sin(handAngle);
+  this.deltaX_light = this.light_length*Math.cos(this.holdAngle-handAngle);
+  this.deltaY_light =  this.light_length*Math.sin(this.holdAngle-handAngle);
   this.endX = function() { return this.startX - this.deltaX; }
   this.endY = function() { return this.startY - this.deltaY; }
 
@@ -86,6 +112,10 @@ var saber = function() {
     this.startY =  height - r*Math.sin(theta);
     this.deltaX = this.length*Math.cos(this.holdAngle-theta);
     this.deltaY =  this.length*Math.sin(this.holdAngle-theta);
+    this.startX_light = width/2 + r*Math.cos(theta);
+    this.startY_light =  height - r*Math.sin(theta);
+    this.deltaX_light = this.light_length*Math.cos(this.holdAngle-theta);
+    this.deltaY_light =  this.light_length*Math.sin(this.holdAngle-theta);
 
     ctx.strokeStyle="grey";
     ctx.lineWidth=5;
@@ -101,13 +131,13 @@ var saber = function() {
 
     ctx.strokeStyle=saberColor;
     ctx.lineWidth=4;
-    drawLine(this.startX - this.deltaX*0.12, this.startY - this.deltaY*0.12, this.startX - this.deltaX, this.startY - this.deltaY);
+    drawLine(this.startX_light - this.deltaX_light*0.12, this.startY_light - this.deltaY_light*0.12, this.startX_light - this.deltaX_light, this.startY_light - this.deltaY_light);
 
     ctx.strokeStyle= "white";
     ctx.lineWidth=1;
-    drawLine(this.startX - this.deltaX*0.10, this.startY - this.deltaY*0.10, this.startX - this.deltaX*0.99, this.startY - this.deltaY*0.99);
+    drawLine(this.startX_light - this.deltaX_light*0.10, this.startY_light - this.deltaY_light*0.10, this.startX_light - this.deltaX_light*0.99, this.startY_light - this.deltaY_light*0.99);
 
-    ctx.strokeStyle="#grey";
+    ctx.strokeStyle="grey";
     ctx.lineWidth=7;
     drawLine(this.startX - this.deltaX*0.11, this.startY - this.deltaY*0.11, this.startX - this.deltaX*0.12, this.startY - this.deltaY*0.12);
   }
@@ -358,12 +388,6 @@ var GameLoop = function() {
   }
 
 }
-
-document.addEventListener("mousemove", function(e) {
-  var x = e.clientX;
-  var y = e.clientY;
-  handAngle = Math.atan2(height-y, x-width/2);
-});
 
 document.addEventListener("click", function(e) {
   if(gameState == 0) {

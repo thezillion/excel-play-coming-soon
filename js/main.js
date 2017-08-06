@@ -14,7 +14,8 @@ var hideStart = function() {
     setTimeout(function() {
       document.querySelector(".start-container").style.display = "none";
       document.querySelector("#c").style.display="block";
-      gLoop = setInterval(GameLoop, 1000 / 50);
+      //gLoop = setInterval(GameLoop, 1000 / 50);
+      lightSaber_open();
     }, 3000);
   } else {
     var c = document.querySelector("#c");
