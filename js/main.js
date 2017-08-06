@@ -23,18 +23,8 @@ var hideStart = function() {
       // document.querySelector(".start-container").style.display = "none";
       // document.querySelector("#c").style.display="block";
       if (!window.pageYOffset) hideAddressBar();
-      gLoop = setInterval(GameLoop, 1000 / 50);
-      Hammer(c).on("pan", function(event) {
-        var center_x = event.center.x;
-        var center_y = event.center.y;
-        var dx = event.deltaX;
-        var dy = event.deltaY;
-
-        var x = center_x + dx/2;
-        var y = center_y + dy/2;
-
-        handAngle = Math.atan2(height-y, x-width/2);
-      });
+      // gLoop = setInterval(GameLoop, 1000 / 50);
+      lightSaber_open();
     // }
   }
 }
