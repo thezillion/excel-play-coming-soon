@@ -4,7 +4,6 @@ skipped = 0
 var gLoop;
 
 var hideStart = function() {
-  console.log('pappu');
   //Check Mobile
   if (!(/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent))) {
     skipped = 1;
@@ -44,8 +43,12 @@ function hideAddressBar() {
 }
 
 document.addEventListener("keypress", function(e) {
-  if(String.fromCharCode(e.which) == 'k' && skipped == 0) {
+  if (String.fromCharCode(e.which) == 'k' && skipped == 0) {
     hideStart();
+  } else if (String.fromCharCode(e.which) == 'a') {
+    saber1.isGoingRight = false;
+  } else if (String.fromCharCode(e.which) == 'd') {
+    saber1.isGoingRight = true;
   }
 });
 

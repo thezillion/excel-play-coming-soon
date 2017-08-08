@@ -26,6 +26,7 @@ lightsaberHitAudio = new Audio('sounds/78671__joe93barlow__hit4.wav'),
 lightsaberOnAudio = new Audio('sounds/78674__joe93barlow__on0.wav'),
 ctx = c.getContext('2d');
 
+
 lightsaberHitAudio.volume = 0.2;
 lightsaberMoveAudio.volume = 0.1;
 lightsaberOnAudio.volume = 0.2;
@@ -37,6 +38,8 @@ var clear = function() {
 }
 
 var restart = function() {
+  clearInterval(eLoop);
+  eLoop = null;
   saberColor = colorSet[Math.floor(Math.random()*colorSet.length)];
   gameState = 1;
   points = 0;
@@ -115,8 +118,16 @@ var saber = function() {
   this.deltaY_light =  this.light_length*Math.sin(this.holdAngle-handAngle);
   this.endX = function() { return this.startX - this.deltaX; }
   this.endY = function() { return this.startY - this.deltaY; }
+  this.isGoingRight = false;
 
   this.draw = function() {
+
+    if (this.isGoingRight && this.holdAngle < 3*Math.PI/2) {
+      this.holdAngle += (Math.PI)/10;
+    } else if (!this.isGoingRight && this.holdAngle > Math.PI/2) {
+      this.holdAngle -= (Math.PI)/10;
+    }
+
     var r = handLength;
     var theta = handAngle;
     this.startX = width/2 + r*Math.cos(theta);
@@ -168,8 +179,8 @@ var laser = function() {
   this.initY = height - this.distance*Math.sin(this.angle);
 
   //Laser collides to only 40% its length
-  this.endX = function() { return width/2 + (this.distance+this.length*0.4)*Math.cos(this.angle); }
-  this.endY = function() { return height - (this.distance+this.length*0.4)*Math.sin(this.angle); }
+  this.endX = function() { return width/2 + (this.distance+this.length)*Math.cos(this.angle); }
+  this.endY = function() { return height - (this.distance+this.length)*Math.sin(this.angle); }
 
   this.draw = function() {
     if(this.state == 0) { return; }
@@ -313,19 +324,21 @@ var endScreen = function() {
   ctx.fillStyle = "rgba(255,255,102, 0.5)";
   ctx.fillText("-   C   O   M   I   N   G       S   O   O   N   -", width/2, height*0.75 + height*0.15*0.7);
 
-  if (!eLoop) pappu();
+  pappu();
 
 }
 
 function pappu() {
 
-  if(cycles < 100 && gameState == 0) {
+  if (cycles == 0)
+    eLoop = setInterval(endScreen, 1000 / 50);
+
+  if(cycles <= 100 && gameState == 0) {
     cycles++;
-    eLoop = setTimeout(endScreen, 1000 / 50);
   }
 
-  if (cycles == 100) {
-    clearTimeout(eLoop);
+  if (cycles > 100) {
+    clearInterval(eLoop);
     eLoop = null;
   }
 
