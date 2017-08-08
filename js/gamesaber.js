@@ -7,6 +7,7 @@ var width = c.width,
 height = c.height,
 gLoop,
 eLoop = null,
+bg = new Image(),
 handLength = width*0.15,
 handAngle = Math.PI/2,
 lasers = [],
@@ -32,10 +33,15 @@ lightsaberMoveAudio.volume = 0.1;
 lightsaberOnAudio.volume = 0.2;
 
 var clear = function() {
-  ctx.fillStyle = '#000';
-  ctx.rect(0, 0, width, height);
-  ctx.fill();
+  // ctx.fillStyle = 'rgba(0,0,0,1)';
+  // ctx.rect(0, 0, width, height);
+  // ctx.fill();
+  try {
+    ctx.drawImage(bg, 0, 0);
+  }
+  catch(e) {};
 }
+bg.src = 'images/stars.jpg'
 
 var restart = function() {
   clearInterval(eLoop);
