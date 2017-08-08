@@ -60,6 +60,6 @@ $(window).on("orientationchange",function(event){
   }, 200);
 });
 
-window.addEventListener("load", hideStart);
+// window.addEventListener("load", hideStart);
 //For game dev only
 // hideStart();
