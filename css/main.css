@@ -18,7 +18,6 @@ html, body {
   perspective: 100px;
   font-family: "Droid Sans", arial, verdana, sans-serif;
   color: #ff6;
-  overflow: hidden;
 }
 
 .start-container .title {
