@@ -53,6 +53,11 @@ document.addEventListener("keypress", function(e) {
   }
 });
 
+window.addEventListener("load", function() {
+  if ((/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)))
+    document.getElementById("pbw").style.display = "none";
+});
+
 $(window).on("orientationchange",function(event){
   setTimeout(function() {
     if (window.innerWidth < window.innerHeight) ori = "portriat";
