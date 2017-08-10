@@ -16,16 +16,17 @@ var hideStart = function() {
       //gLoop = setInterval(GameLoop, 1000 / 50);
       lightSaber_open();
     }, 3000);
-  } else {
-    var c = document.querySelector("#c");
-    // if (window.innerWidth > window.innerHeight) {
-      // document.querySelector(".start-container").style.display = "none";
-      // document.querySelector("#c").style.display="block";
-      if (!window.pageYOffset) hideAddressBar();
-      // gLoop = setInterval(GameLoop, 1000 / 50);
-      lightSaber_open();
-    // }
   }
+  //  else {
+  //   var c = document.querySelector("#c");
+  //   // if (window.innerWidth > window.innerHeight) {
+  //     // document.querySelector(".start-container").style.display = "none";
+  //     // document.querySelector("#c").style.display="block";
+  //     if (!window.pageYOffset) hideAddressBar();
+  //     // gLoop = setInterval(GameLoop, 1000 / 50);
+  //     lightSaber_open();
+  //   // }
+  // }
 }
 
 //For Mobile

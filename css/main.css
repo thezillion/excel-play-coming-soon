@@ -32,7 +32,7 @@ html, body {
   text-align: center;
   text-shadow: -2px -2px 0 #ff6, 2px -2px 0 #ff6, -2px 2px 0 #ff6, 2px 2px 0 #ff6;
   transform: translateZ(20px);
-  animation: title-anim 5s forwards;
+  animation: title-anim 10s forwards;
   animation-timing-function: linear;
   animation-delay: 2s;
 }
@@ -43,11 +43,25 @@ html, body {
   font-weight: normal;
 }
 
+.playBtn-wrapper {
+  text-align: center;
+}
+
+.playBtn {
+  color: white;
+  text-decoration: none;
+  font-size: 45px;
+  border: 6px solid white;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.4em 2.5em;
+}
+
 .start-container .content {
   position: absolute;
-  top: 30%;
+  top: 10%;
   width: 100%;
-  left: 5%;
+  /*left: 5%;*/
   display: block;
   color: #ff6;
   font-size: 2em;
@@ -68,7 +82,7 @@ html, body {
     }
     .start-container .content {
       transform: rotateX(45deg) translateY(900px);
-      animation: content-anim-mobile 21s forwards;
+      animation: content-anim-mobile 50s forwards;
       animation-delay: 0s;
       animation-timing-function: linear;
     }
@@ -80,7 +94,7 @@ html, body {
     left: 10%;
     top: 200%;
     animation: slidein 2s forwards;
-    animation-delay: 49s;
+    animation-delay: 45s;
 }
 
 .end-screen .excel {
@@ -177,6 +191,12 @@ html, body {
   }
   100% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .playBtn-wrapper {
+    display: none;
   }
 }
 
