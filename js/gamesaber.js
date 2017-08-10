@@ -298,15 +298,15 @@ var endScreen = function() {
   ctx.fillText(Math.floor(points*cycles/100), width/2, height*0.6);
 
   var img = new Image();
-  img.src="/images/fshare.png";
+  img.src="images/fshare.png";
   ctx.drawImage(img, width/2 - 100, height*0.75);
 
   var img2 = new Image();
-  img2.src = "/images/vader.png";
+  img2.src = "images/vader.png";
   ctx.drawImage(img2, -512, -50);
 
   var img3 = new Image();
-  img3.src = "/images/yoda.png";
+  img3.src = "images/yoda.png";
   ctx.drawImage(img3, width-285, -50);
 
 
