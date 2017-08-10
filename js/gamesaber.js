@@ -83,6 +83,12 @@ function lightSaber_open() {
         handAngle = Math.atan2(height-y, x-width/2);
       });
       gLoop = setInterval(GameLoop, 1000 / 50);
+
+      c.addEventListener("click", function() {
+        if (staging)
+          staging = false;
+      });
+
       clearInterval(p);
     }
   }, 1);
@@ -91,7 +97,10 @@ function lightSaber_open() {
 var hud = function() {
   ctx.fillStyle = "rgba(255,255,255,0.6)";
   ctx.font = "small-caps " + width*0.012 + "px Droid Sans";
-  ctx.fillText("Points: " + points,width*0.04,height*0.04);
+  ctx.fillText("POINTS",width*0.05,height*0.04);
+  ctx.fillStyle = "rgba(255,255,255,1)";
+  ctx.font = "small-caps " + width*0.05 + "px Droid Sans";
+  ctx.fillText(points,width*0.05,height*0.125);
 
   ctx.beginPath();
   ctx.fillStyle = 'rgba(255,0,0,0.5)';
@@ -128,6 +137,8 @@ var saber = function() {
 
   this.draw = function() {
 
+    ctx.shadowBlur = 0;
+
     if (this.isGoingRight && this.holdAngle < 3*Math.PI/2) {
       this.holdAngle += (Math.PI)/10;
     } else if (!this.isGoingRight && this.holdAngle > Math.PI/2) {
@@ -157,6 +168,16 @@ var saber = function() {
     ctx.lineWidth=5;
     drawLine(this.startX - this.deltaX*0.04, this.startY - this.deltaY*0.04, this.startX - this.deltaX*0.05, this.startY - this.deltaY*0.05);
 
+    // Assuming your canvas element is ctx
+    ctx.shadowColor = saberColor // string
+        //Color of the shadow;  RGB, RGBA, HSL, HEX, and other inputs are valid.
+    ctx.shadowOffsetX = 0; // integer
+        //Horizontal distance of the shadow, in relation to the text.
+    ctx.shadowOffsetY = 0; // integer
+        //Vertical distance of the shadow, in relation to the text.
+    ctx.shadowBlur = 20; // integer
+        //Blurring effect to the shadow, the larger the value, the greater the blur.
+
     ctx.strokeStyle=saberColor;
     ctx.lineWidth=4;
     drawLine(this.startX_light - this.deltaX_light*0.12, this.startY_light - this.deltaY_light*0.12, this.startX_light - this.deltaX_light, this.startY_light - this.deltaY_light);
@@ -167,7 +188,8 @@ var saber = function() {
 
     ctx.strokeStyle="grey";
     ctx.lineWidth=7;
-    drawLine(this.startX - this.deltaX*0.11, this.startY - this.deltaY*0.11, this.startX - this.deltaX*0.12, this.startY - this.deltaY*0.12);
+    drawLine(this.startX_light - this.deltaX_light*0.11, this.startY_light - this.deltaY_light*0.11, this.startX_light - this.deltaX_light*0.12, this.startY_light - this.deltaY_light*0.12);
+
   }
 }
 
@@ -250,13 +272,42 @@ var saber1 = new saber();
 
 var endScreen = function() {
 
-  ctx.fillStyle = "rgba(240,240,240, 0.9)";
-  ctx.fillRect(width*0.3, height*0.1, width*0.4, height*0.8);
+  clear();
 
-  ctx.fillStyle = "black";
-  ctx.font = height*0.1*0.4 + "px Droid Sans";
+  ctx.shadowBlur = 0;
+  ctx.shadowColor = "transparent";
+
+  // ctx.fillStyle = "rgba(240,240,240, 0.9)";
+  // ctx.fillRect(width*0.3, height*0.1, width*0.4, height*0.8);
+
+  text = points > 100 ? "AWESOME!" : points != 0 ? "NICE TRY!" : "HIT ATLEAST ONE, YOU MUST!";
+
+  ctx.fillStyle = "white";
+  ctx.font = height*0.1*0.3 + "px Droid Sans";
   ctx.textAlign = "center";
-  ctx.fillText("POINTS: " + Math.floor(points*cycles/100), width/2, height*0.25);
+  ctx.fillText(text, width/2, height*0.25);
+
+  // ctx.fillStyle = "black";
+  ctx.font = height*0.1*0.3 + "px Droid Sans";
+  ctx.textAlign = "center";
+  ctx.fillText("POINTS:", width/2, height*0.35);
+
+
+  ctx.font = height*0.3 + "px Droid Sans";
+  ctx.textAlign = "center";
+  ctx.fillText(Math.floor(points*cycles/100), width/2, height*0.6);
+
+  var img = new Image();
+  img.src="/images/fshare.png";
+  ctx.drawImage(img, width/2 - 100, height*0.75);
+
+  var img2 = new Image();
+  img2.src = "/images/vader.png";
+  ctx.drawImage(img2, -512, -50);
+
+  var img3 = new Image();
+  img3.src = "/images/yoda.png";
+  ctx.drawImage(img3, width-285, -50);
 
 
   // if(points>=100) {
@@ -268,67 +319,67 @@ var endScreen = function() {
   // img.src = 'images/1413631-cwyoda_b_4c.jpg';
 
   //Lightsaber part
-  {
-    var startSaberX = width*0.37;
-    var startSaberY = height*0.7;
-    var saberHeight = height*0.5;
+  // {
+  //   var startSaberX = width*0.37;
+  //   var startSaberY = height*0.7;
+  //   var saberHeight = height*0.5;
+  //
+  //   ctx.strokeStyle="grey";
+  //   ctx.lineWidth=12;
+  //   drawLine(startSaberX, startSaberY, startSaberX, startSaberY - saberHeight*0.2);
+  //
+  //   ctx.strokeStyle="grey";
+  //   ctx.lineWidth=16;
+  //   drawLine(startSaberX, startSaberY, startSaberX, startSaberY - saberHeight*0.01);
+  //
+  //   ctx.strokeStyle="#333";
+  //   ctx.lineWidth=14;
+  //   drawLine(startSaberX, startSaberY-saberHeight*0.01, startSaberX, startSaberY - saberHeight*0.06);
+  //
+  //   ctx.strokeStyle="#333";
+  //   ctx.lineWidth=13;
+  //   drawLine(startSaberX, startSaberY-saberHeight*0.11, startSaberX, startSaberY - saberHeight*0.12);
+  //
+  //   ctx.strokeStyle="#333";
+  //   ctx.lineWidth=13;
+  //   drawLine(startSaberX, startSaberY-saberHeight*0.125, startSaberX, startSaberY - saberHeight*0.135);
+  //
+  //   ctx.strokeStyle="#333";
+  //   ctx.lineWidth=13;
+  //   drawLine(startSaberX, startSaberY-saberHeight*0.14, startSaberX, startSaberY - saberHeight*0.15);
+  //
+  //   ctx.strokeStyle="#333";
+  //   ctx.lineWidth=13;
+  //   drawLine(startSaberX, startSaberY-saberHeight*0.155, startSaberX, startSaberY - saberHeight*0.165);
+  //
+  //   ctx.strokeStyle='rgba(0,0,0,0.5)';
+  //   ctx.lineWidth=7;
+  //   drawLine(startSaberX, startSaberY-saberHeight*0.2, startSaberX, startSaberY-saberHeight*0.2-saberHeight*0.8 );
+  //
+  //   percentComp = points>topPoints?100:Math.floor(points*100/topPoints);
+  //   ctx.strokeStyle=saberColor;
+  //   ctx.lineWidth=7;
+  //   drawLine(startSaberX, startSaberY-saberHeight*0.2, startSaberX, startSaberY-saberHeight*0.2-saberHeight*0.8*cycles*percentComp/(100*100));
+  //
+  //   ctx.strokeStyle="rgba(255,255,255,0.9)";
+  //   ctx.lineWidth=3;
+  //   drawLine(startSaberX, startSaberY-saberHeight*0.2, startSaberX, startSaberY-saberHeight*0.2-saberHeight*0.79*cycles*percentComp/(100*100));
+  //
+  //   ctx.strokeStyle="grey";
+  //   ctx.lineWidth=18;
+  //   drawLine(startSaberX, startSaberY-saberHeight*0.19, startSaberX, startSaberY - saberHeight*0.2);
+  // }
 
-    ctx.strokeStyle="grey";
-    ctx.lineWidth=12;
-    drawLine(startSaberX, startSaberY, startSaberX, startSaberY - saberHeight*0.2);
 
-    ctx.strokeStyle="grey";
-    ctx.lineWidth=16;
-    drawLine(startSaberX, startSaberY, startSaberX, startSaberY - saberHeight*0.01);
-
-    ctx.strokeStyle="#333";
-    ctx.lineWidth=14;
-    drawLine(startSaberX, startSaberY-saberHeight*0.01, startSaberX, startSaberY - saberHeight*0.06);
-
-    ctx.strokeStyle="#333";
-    ctx.lineWidth=13;
-    drawLine(startSaberX, startSaberY-saberHeight*0.11, startSaberX, startSaberY - saberHeight*0.12);
-
-    ctx.strokeStyle="#333";
-    ctx.lineWidth=13;
-    drawLine(startSaberX, startSaberY-saberHeight*0.125, startSaberX, startSaberY - saberHeight*0.135);
-
-    ctx.strokeStyle="#333";
-    ctx.lineWidth=13;
-    drawLine(startSaberX, startSaberY-saberHeight*0.14, startSaberX, startSaberY - saberHeight*0.15);
-
-    ctx.strokeStyle="#333";
-    ctx.lineWidth=13;
-    drawLine(startSaberX, startSaberY-saberHeight*0.155, startSaberX, startSaberY - saberHeight*0.165);
-
-    ctx.strokeStyle='rgba(0,0,0,0.5)';
-    ctx.lineWidth=7;
-    drawLine(startSaberX, startSaberY-saberHeight*0.2, startSaberX, startSaberY-saberHeight*0.2-saberHeight*0.8 );
-
-    percentComp = points>topPoints?100:Math.floor(points*100/topPoints);
-    ctx.strokeStyle=saberColor;
-    ctx.lineWidth=7;
-    drawLine(startSaberX, startSaberY-saberHeight*0.2, startSaberX, startSaberY-saberHeight*0.2-saberHeight*0.8*cycles*percentComp/(100*100));
-
-    ctx.strokeStyle="rgba(255,255,255,0.9)";
-    ctx.lineWidth=3;
-    drawLine(startSaberX, startSaberY-saberHeight*0.2, startSaberX, startSaberY-saberHeight*0.2-saberHeight*0.79*cycles*percentComp/(100*100));
-
-    ctx.strokeStyle="grey";
-    ctx.lineWidth=18;
-    drawLine(startSaberX, startSaberY-saberHeight*0.19, startSaberX, startSaberY - saberHeight*0.2);
-  }
-
-
-  ctx.fillStyle = 'rgba(0,0,0,0.9)';
-  ctx.fillRect(width*0.3, height*0.75, width*0.4, height*0.15);
-  ctx.font = "bold " + height*0.15*0.3 + "px Droid Sans";
-  ctx.fillStyle = "#ff6";
-  ctx.textAlign = "center";
-  ctx.fillText("E X C E L   P L A Y ", width/2, height*0.75 + height*0.15*0.4);
-  ctx.font = height*0.15*0.2 + "px Droid Sans";
-  ctx.fillStyle = "rgba(255,255,102, 0.5)";
-  ctx.fillText("-   C   O   M   I   N   G       S   O   O   N   -", width/2, height*0.75 + height*0.15*0.7);
+  // ctx.fillStyle = 'rgba(0,0,0,0.9)';
+  // ctx.fillRect(width*0.3, height*0.75, width*0.4, height*0.15);
+  // ctx.font = "bold " + height*0.15*0.3 + "px Droid Sans";
+  // ctx.fillStyle = "#ff6";
+  // ctx.textAlign = "center";
+  // ctx.fillText("E X C E L   P L A Y ", width/2, height*0.75 + height*0.15*0.4);
+  // ctx.font = height*0.15*0.2 + "px Droid Sans";
+  // ctx.fillStyle = "rgba(255,255,102, 0.5)";
+  // ctx.fillText("-   C   O   M   I   N   G       S   O   O   N   -", width/2, height*0.75 + height*0.15*0.7);
 
   pappu();
 
@@ -350,35 +401,50 @@ function pappu() {
 
 }
 
+var staging = true;
+
 var GameLoop = function() {
   clear();
 
-  saber1.draw();
+  ctx.shadowBlur = 0;
+  ctx.shadowColor = "transparent";
 
   if(cycles >= laserGenTime) {
     lasers.push(new laser());
     cycles = 0;
   }
 
-  laserGenTime = laserGenTime<=20?20:100 - points;
-  cycles++;
-  if (hurtEffectTimer-- > 0) {
-    var grd=ctx.createRadialGradient(width/2,height/2,0,width/2,height/2,width*0.9);
-    grd.addColorStop(0,'rgba(0,0,0,0)');
-    grd.addColorStop(1,'rgba(255,0,0,0.6)');
-    ctx.fillStyle = grd;
-    ctx.fillRect(0,0,width,height);
+  if (!staging) {
+
+    laserGenTime = laserGenTime<=20?20:100 - points;
+    cycles++;
+    if (hurtEffectTimer-- > 0) {
+      var grd=ctx.createRadialGradient(width/2,height/2,0,width/2,height/2,width*0.9);
+      grd.addColorStop(0,'rgba(0,0,0,0)');
+      grd.addColorStop(1,'rgba(255,0,0,0.6)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0,0,width,height);
+    }
+
   }
 
   hud();
 
-  if (initMessageTime>0) {
-    ctx.fillStyle = "rgba(255,255,255,"+ initMessageTime/200 + ")";
-    ctx.font = width*0.02 + "px Droid Sans";
-    ctx.textAlign = "center";
-    ctx.fillText(" Deflect the blasts with your lightsaber! ", width/2, height/5);
+  if (!staging && initMessageTime > 0) {
     initMessageTime--;
+    console.log(initMessageTime);
   }
+
+  // if (initMessageTime > 0 && staging) {
+    // console.log(initMessageTime);
+    ctx.fillStyle = "rgba(240,240,240,"+ initMessageTime/200 + ")";
+    ctx.textAlign = "center";
+    ctx.font = width*0.02/(200-initMessageTime+1) + "px Droid Sans";
+    ctx.fillText(" Deflect the blasts with your lightsaber! ", width/2, height/5);
+    ctx.font = width*0.015/(200-initMessageTime+1) + "px Droid Sans";
+    ctx.fillText(" Use the 'a' and 'd' keys to switch your hold. ", width/2, height/5 + width*0.03);
+    ctx.fillText(" Click anywhere to start ", width/2, height/2);
+  // }
 
   if(health <= 0) {
     gameState = 0;
@@ -407,8 +473,10 @@ var GameLoop = function() {
       lightsaberHitAudio.play();
       points+=5;
       lasers[i].state = 2;
+
       lasers[i].initX = lasers[i].startX;
       lasers[i].initY = lasers[i].startY;
+
       lasers[i].angle = 2*handAngle - lasers[i].angle;
       lasers[i].distance = 0;
     }
@@ -416,6 +484,8 @@ var GameLoop = function() {
       lasers.splice(i, 1);
     }
   }
+
+  saber1.draw();
 
 }
 

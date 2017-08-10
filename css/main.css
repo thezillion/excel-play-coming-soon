@@ -46,17 +46,17 @@ html, body {
 .start-container .content {
   position: absolute;
   top: 30%;
-  width: 70%;
-  left: 15%;
+  width: 100%;
+  left: 5%;
   display: block;
   color: #ff6;
   font-size: 2em;
-  font-weight: normal;
+  font-weight: bold;
   text-align: center;
   line-height: 1em;
-  transform: rotateX(45deg) translateY(400px);
-  animation: content-anim 20s forwards;
-  animation-delay: 1s;
+  transform: rotateX(60deg) translateY(400px);
+  animation: content-anim 50s forwards;
+  /*animation-delay: 1s;*/
   animation-timing-function: linear;
 }
 
@@ -80,7 +80,7 @@ html, body {
     left: 10%;
     top: 200%;
     animation: slidein 2s forwards;
-    animation-delay: 19s;
+    animation-delay: 49s;
 }
 
 .end-screen .excel {
