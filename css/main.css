@@ -59,7 +59,7 @@ html, body {
 
 .start-container .content {
   position: absolute;
-  top: 10%;
+  top: 5%;
   width: 100%;
   /*left: 5%;*/
   display: block;
@@ -68,7 +68,7 @@ html, body {
   font-weight: bold;
   text-align: center;
   line-height: 1em;
-  transform: rotateX(60deg) translateY(400px);
+  transform: rotateX(20deg) translateY(400px);
   animation: content-anim 50s forwards;
   animation-delay: 2s;
   animation-timing-function: linear;
@@ -81,7 +81,7 @@ html, body {
       overflow: visible;
     }
     .start-container .content {
-      transform: rotateX(45deg) translateY(900px);
+      transform: rotateX(20deg) translateY(900px);
       animation: content-anim-mobile 50s forwards;
       animation-delay: 0s;
       animation-timing-function: linear;
@@ -141,28 +141,28 @@ html, body {
 
 @keyframes content-anim {
     0% {
-      transform: rotateX(45deg) translateY(400px);
+      transform: rotateX(20deg) translateY(400px);
     }
     90% {
-      transform: rotateX(45deg) translateY(-700px);
+      transform: rotateX(20deg) translateY(-700px);
       opacity: 1;
     }
     100% {
-      transform: rotateX(45deg) translateY(-750px);
+      transform: rotateX(20deg) translateY(-750px);
       opacity: 0;
     }
 }
 
 @keyframes content-anim-mobile {
     0% {
-      transform: rotateX(45deg) translateY(900px);
+      transform: rotateX(20deg) translateY(900px);
     }
     90% {
-      transform: rotateX(45deg) translateY(-700px);
+      transform: rotateX(20deg) translateY(-700px);
       opacity: 1;
     }
     100% {
-      transform: rotateX(45deg) translateY(-750px);
+      transform: rotateX(20deg) translateY(-750px);
       opacity: 0;
     }
 }
