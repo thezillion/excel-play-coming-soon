@@ -66,6 +66,9 @@ $(window).on("orientationchange",function(event){
   }, 200);
 });
 
+var fbbutton = document.getElementById("fb-link");
+fbbutton.style.left = (screen.width/2 - 100) + 'px';
+
 // window.addEventListener("load", hideStart);
 //For game dev only
 // hideStart();

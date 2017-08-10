@@ -27,6 +27,7 @@ lightsaberHitAudio = new Audio('sounds/78671__joe93barlow__hit4.wav'),
 lightsaberOnAudio = new Audio('sounds/78674__joe93barlow__on0.wav'),
 ctx = c.getContext('2d');
 
+var fbbutton = document.getElementById("fb-link");
 
 lightsaberHitAudio.volume = 0.2;
 lightsaberMoveAudio.volume = 0.1;
@@ -45,6 +46,7 @@ bg.src = 'images/stars.jpg'
 
 var restart = function() {
   clearInterval(eLoop);
+  fbbutton.style.display = "none";
   eLoop = null;
   saberColor = colorSet[Math.floor(Math.random()*colorSet.length)];
   gameState = 1;
@@ -309,6 +311,7 @@ var endScreen = function() {
   img3.src = "images/yoda.png";
   ctx.drawImage(img3, width-285, -50);
 
+  fbbutton.style.display = "block";
 
   // if(points>=100) {
   //
