@@ -70,7 +70,7 @@ html, body {
   line-height: 1em;
   transform: rotateX(60deg) translateY(400px);
   animation: content-anim 50s forwards;
-  /*animation-delay: 1s;*/
+  animation-delay: 2s;
   animation-timing-function: linear;
 }
 
