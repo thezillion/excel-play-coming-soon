@@ -59,7 +59,7 @@ html, body {
 
 .start-container .content {
   position: absolute;
-  top: 5%;
+  top: 10%;
   width: 100%;
   /*left: 5%;*/
   display: block;
