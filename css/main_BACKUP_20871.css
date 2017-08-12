@@ -83,6 +83,7 @@ html, body {
   -o-animation: content-anim 70s linear forwards;
 }
 
+<<<<<<< HEAD
 .content-wrapper {
   position: absolute;
   width: 100%;
@@ -92,6 +93,41 @@ html, body {
   -webkit-transform: rotateX(10deg);
   -moz-transform: rotateX(10deg);
   -o-transform: rotateX(10deg);
+=======
+@media only screen and (max-device-width: 700px) {
+  .start-container {
+      perspective: 200px;
+      -moz-perspective: 200px;
+      -webkit-perspective: 200px;
+      width: 50%;
+      overflow: visible;
+    }
+    .start-container .content {
+      transform: rotateX(20deg) translateY(900px);
+      -ms-transform: rotateX(20deg) translateY(900px);
+      -moz-transform: rotateX(20deg) translateY(900px);
+      -webkit-transform: rotateX(20deg) translateY(900px);
+      animation: content-anim-mobile 50s forwards;
+      -webkit-animation: content-anim-mobile 50s forwards;
+      -o-animation: content-anim-mobile 50s forwards;
+      -moz-animation: content-anim-mobile 50s forwards;
+      animation-delay: 0s;
+      -webkit-animation-delay: 0s;
+      -o-animation-delay: 0s;
+      -moz-animation-delay: 0s;
+      animation-timing-function: linear;
+      -webkit-animation-timing-function: linear;
+      -o-animation-timing-function: linear;
+      -moz-animation-timing-function: linear;
+    }
+    .end-screen {
+      -webkit-transform: scale(2,2);
+      -ms-transform: scale(2,2);
+      -moz-transform: scale(2,2);
+      -o-transform: scale(2,2);
+      transform: scale(2,2);
+    }
+>>>>>>> 14a5b3fb65bcb932288d519dbb0006e468ad7bc8
 }
 
 .end-screen {
@@ -161,13 +197,6 @@ html, body {
       -webkit-animation-delay: 1s;
       -o-animation-delay: 1s;
       -moz-animation-delay: 1s;
-    }
-    .end-screen {
-      -webkit-transform: scale(2,2);
-      -ms-transform: scale(2,2);
-      -moz-transform: scale(2,2);
-      -o-transform: scale(2,2);
-      transform: scale(2,2);
     }
 }
 

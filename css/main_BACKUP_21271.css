@@ -162,13 +162,6 @@ html, body {
       -o-animation-delay: 1s;
       -moz-animation-delay: 1s;
     }
-    .end-screen {
-      -webkit-transform: scale(2,2);
-      -ms-transform: scale(2,2);
-      -moz-transform: scale(2,2);
-      -o-transform: scale(2,2);
-      transform: scale(2,2);
-    }
 }
 
 @-webkit-keyframes title-anim {
