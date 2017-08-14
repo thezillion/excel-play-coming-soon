@@ -117,10 +117,10 @@ html, body {
     -webkit-animation: slidein 2s forwards;
     -o-animation: slidein 2s forwards;
     -moz-animation: slidein 2s forwards;
-    animation-delay: 49s;
-    -webkit-animation-delay: 49s;
-    -o-animation-delay: 49s;
-    -moz-animation-delay: 49s;
+    animation-delay: 46s;
+    -webkit-animation-delay: 46s;
+    -o-animation-delay: 46s;
+    -moz-animation-delay: 46s;
 }
 
 .end-screen .excel {
@@ -184,7 +184,7 @@ html, body {
       transform: scale(2,2);
     }
 }
-
+/*
 @-webkit-keyframes title-anim {
   0% {
     transform: translateZ(100px);
@@ -237,10 +237,10 @@ html, body {
     0% {
       top: 100%;
     }
-    65% {
+    40% {
       opacity: 1;
     }
-    75% {
+    50% {
       opacity: 0;
     }
     100% {
@@ -290,7 +290,7 @@ html, body {
   100% {
     opacity: 0;
   }
-}
+}*/
 
 @keyframes title-anim {
   0% {
@@ -347,7 +347,7 @@ html, body {
     65% {
       opacity: 1;
     }
-    75% {
+    68% {
       opacity: 0;
     }
     100% {
