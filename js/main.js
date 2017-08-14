@@ -5,7 +5,7 @@ var gLoop;
 
 var hideStart = function() {
   //Check Mobile
-  if (!(/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent))) {
+  // if (!(/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent))) {
     skipped = 1;
     document.querySelector(".start-container").style.animation="fadeout 3s forwards";
     // document.querySelector("audio").pause();
@@ -16,6 +16,7 @@ var hideStart = function() {
       //gLoop = setInterval(GameLoop, 1000 / 50);
       lightSaber_open();
     }, 3000);
+<<<<<<< HEAD
   }
   //  else {
   //   var c = document.querySelector("#c");
@@ -26,6 +27,8 @@ var hideStart = function() {
   //     // gLoop = setInterval(GameLoop, 1000 / 50);
   //     lightSaber_open();
   //   // }
+=======
+>>>>>>> 9b80d7b5d31cd076439e56db9f07f239abaa7e0d
   // }
 }
 
@@ -39,10 +42,6 @@ if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
   });
 }
 
-function hideAddressBar() {
-  window.scrollTo(0, 1);
-}
-
 document.addEventListener("keypress", function(e) {
   if (String.fromCharCode(e.which) == 'k' && skipped == 0) {
     hideStart();
@@ -52,6 +51,7 @@ document.addEventListener("keypress", function(e) {
     saber1.isGoingRight = true;
   }
 });
+<<<<<<< HEAD
 
 window.addEventListener("load", function() {
   if ((/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)))
@@ -70,5 +70,7 @@ var fbbutton = document.getElementById("fb-link");
 fbbutton.style.left = (screen.width/2 - 100) + 'px';
 
 // window.addEventListener("load", hideStart);
+=======
+>>>>>>> 9b80d7b5d31cd076439e56db9f07f239abaa7e0d
 //For game dev only
 // hideStart();
