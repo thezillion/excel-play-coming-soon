@@ -83,7 +83,6 @@ html, body {
   -o-animation: content-anim 70s linear forwards;
 }
 
-<<<<<<< HEAD
 .content-wrapper {
   position: absolute;
   width: 100%;
@@ -93,7 +92,6 @@ html, body {
   -webkit-transform: rotateX(10deg);
   -moz-transform: rotateX(10deg);
   -o-transform: rotateX(10deg);
-=======
 @media only screen and (max-device-width: 700px) {
   .start-container {
       perspective: 200px;
@@ -105,7 +103,6 @@ html, body {
       animation-delay: 0s;
       animation-timing-function: linear;
     }
->>>>>>> 9b80d7b5d31cd076439e56db9f07f239abaa7e0d
 }
 
 .end-screen {

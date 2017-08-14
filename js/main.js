@@ -16,7 +16,6 @@ var hideStart = function() {
       //gLoop = setInterval(GameLoop, 1000 / 50);
       lightSaber_open();
     }, 3000);
-<<<<<<< HEAD
   }
   //  else {
   //   var c = document.querySelector("#c");
@@ -27,8 +26,6 @@ var hideStart = function() {
   //     // gLoop = setInterval(GameLoop, 1000 / 50);
   //     lightSaber_open();
   //   // }
-=======
->>>>>>> 9b80d7b5d31cd076439e56db9f07f239abaa7e0d
   // }
 }
 
@@ -51,7 +48,6 @@ document.addEventListener("keypress", function(e) {
     saber1.isGoingRight = true;
   }
 });
-<<<<<<< HEAD
 
 window.addEventListener("load", function() {
   if ((/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)))
@@ -70,7 +66,5 @@ var fbbutton = document.getElementById("fb-link");
 fbbutton.style.left = (screen.width/2 - 100) + 'px';
 
 // window.addEventListener("load", hideStart);
-=======
->>>>>>> 9b80d7b5d31cd076439e56db9f07f239abaa7e0d
 //For game dev only
 // hideStart();
