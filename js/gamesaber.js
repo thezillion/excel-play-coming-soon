@@ -73,17 +73,17 @@ function lightSaber_open() {
         var y = e.clientY;
         handAngle = Math.atan2(height-y, x-width/2);
       });
-      Hammer(c).on("pan", function(event) {
-        var center_x = event.center.x;
-        var center_y = event.center.y;
-        var dx = event.deltaX;
-        var dy = event.deltaY;
-
-        var x = center_x + dx/2;
-        var y = center_y + dy/2;
-
-        handAngle = Math.atan2(height-y, x-width/2);
-      });
+      // Hammer(c).on("pan", function(event) {
+      //   var center_x = event.center.x;
+      //   var center_y = event.center.y;
+      //   var dx = event.deltaX;
+      //   var dy = event.deltaY;
+      //
+      //   var x = center_x + dx/2;
+      //   var y = center_y + dy/2;
+      //
+      //   handAngle = Math.atan2(height-y, x-width/2);
+      // });
       gLoop = setInterval(GameLoop, 1000 / 50);
 
       c.addEventListener("click", function() {
@@ -438,7 +438,6 @@ var GameLoop = function() {
     console.log(initMessageTime);
   }
 
-<<<<<<< HEAD
   // if (initMessageTime > 0 && staging) {
     // console.log(initMessageTime);
     ctx.fillStyle = "rgba(240,240,240,"+ initMessageTime/200 + ")";
@@ -466,8 +465,6 @@ var GameLoop = function() {
     });
   }
 
-=======
->>>>>>> 9b80d7b5d31cd076439e56db9f07f239abaa7e0d
   for( i=0; i<lasers.length ; i++) {
     lasers[i].update();
     lasers[i].draw();
@@ -490,67 +487,12 @@ var GameLoop = function() {
       lasers.splice(i, 1);
     }
   }
-<<<<<<< HEAD
 
   saber1.draw();
 
 }
 
-=======
-  if(cycles >= laserGenTime) {
-    lasers.push(new laser());
-    cycles = 0;
-  }
-
-  saber1.draw();
-  laserGenTime = laserGenTime<=20?20:100 - points;
-  cycles++;
-  if (hurtEffectTimer-- > 0) {
-    var grd=ctx.createRadialGradient(width/2,height/2,0,width/2,height/2,width*0.9);
-    grd.addColorStop(0,'rgba(0,0,0,0)');
-    grd.addColorStop(1,'rgba(255,0,0,0.6)');
-    ctx.fillStyle = grd;
-    ctx.fillRect(0,0,width,height);
-  }
-
-  hud();
-
-  if (initMessageTime>0) {
-    ctx.fillStyle = "rgba(255,255,255,"+ initMessageTime/200 + ")";
-    ctx.font = width*0.02 + "px Droid Sans";
-    ctx.textAlign = "center";
-    ctx.fillText(" Deflect the blasts with your lightsaber! ", width/2, height/5);
-    initMessageTime--;
-  }
-
-  if(health <= 0) {
-    gameState = 0;
-    cycles = 0;
-    lightsaberMoveAudio.pause();
-    lightsaberOnAudio.play();
-    clearInterval(gLoop);
-    endScreen();
-  }
-  else if(gameState == 1) {
-    lightsaberMoveAudio.play();
-  }
-}
-
-if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
-  document.addEventListener("touchmove", function(e) {
-    var x = e.changedTouches[0].clientX;
-    var y = e.changedTouches[0].clientY;
-    handAngle = Math.atan2(height-y, x-width/2);
-  });
-}
-else {
-  document.addEventListener("mousemove", function(e) {
-    var x = e.clientX;
-    var y = e.clientY;
-  });
-}
->>>>>>> 9b80d7b5d31cd076439e56db9f07f239abaa7e0d
-document.addEventListener("click", function(e) {
+c.addEventListener("click", function(e) {
   if(gameState == 0) {
     restart();
   }
